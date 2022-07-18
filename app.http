@@ -11,7 +11,19 @@ GET http://localhost:3000/todos/?priority=HIGH&status=IN%20PROGRESS
 GET http://localhost:3000/todos/?search_q=LEAR
 ###
 
-GET http://localhost:3000/todos/2/
+GET http://localhost:3000/todos/6/
 
 ###
 DELETE http://localhost:3000/todos/3/
+
+###
+POST http://localhost:3000/todos/
+headers: [  "Content-Type": "application/json" ],
+body: JSON.stringify(data)  
+
+data:{
+    id:6,
+     todo:"hello world",
+      priority:"HIGH",
+       status:"DONE"
+}

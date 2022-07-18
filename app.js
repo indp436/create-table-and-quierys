@@ -85,6 +85,30 @@ app.get("/todos/:todoId/", async (request, response) => {
   const TodoArray = await db.get(getTodoQuery);
   response.send(convertToResponseData(TodoArray));
 });
+
+///API 3
+app.post("/todos/", async (request, response) => {
+  const todoDetails = request.body;
+  const { id, todo, priority, status } = todoDetails;
+
+  console.log(id, todo, priority, status);
+
+  const addTodoQuery = `
+    INSERT INTO
+      todo (id, todo, priority, status)
+    VALUES
+      (
+         ${id},
+        '${todo}',
+        '${priority}',
+        '${status}'
+        
+      );`;
+
+  await db.run(addTodoQuery);
+  response.send("Todo Successfully Added");
+});
+
 ///API 5
 app.delete("/todos/:todoId/", async (request, response) => {
   const { todoId } = request.params;
